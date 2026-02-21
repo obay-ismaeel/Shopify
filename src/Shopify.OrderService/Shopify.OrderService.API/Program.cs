@@ -24,8 +24,8 @@ builder.Services.AddSwaggerGen(opts =>
 });
 
 builder.Services.AddHealthChecks()
-    .AddNpgSql(builder.Configuration.GetConnectionString("Default")!, name: "postgres")
-    .AddRabbitMQ(rabbitConnectionString: $"amqp://{builder.Configuration["RabbitMq:Host"]}", name: "rabbitmq");
+    .AddNpgSql(builder.Configuration.GetConnectionString("Default")!, name: "postgres");
+    //.AddRabbitMQ(rabbitConnectionString: $"amqp://{builder.Configuration["RabbitMq:Host"]}", name: "rabbitmq");
 
 builder.Services.AddHostedService<OutboxPublisherService>();
 

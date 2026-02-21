@@ -2,23 +2,38 @@ services:
   order-service:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      DOTNET_USE_POLLING_FILE_WATCHER: "1"
+    build:
+      context: .
+      dockerfile: ./src/Shopify.OrderService/Dockerfile
+      target: dev
     volumes:
       - ./src:/src
     working_dir: /src
-    entrypoint: [ "dotnet", "watch", "--project", "src/Shopify.OrderService/Shopify.OrderService.API/Shopify.OrderService.API.csproj", "run", "--urls", "http://0.0.0.0:8080" ]
+    entrypoint: [ "dotnet", "watch", "--project", "Shopify.OrderService/Shopify.OrderService.API/Shopify.OrderService.API.csproj", "run", "--urls", "http://0.0.0.0:8080" ]
 
   inventory-service:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      DOTNET_USE_POLLING_FILE_WATCHER: "1"
+    build:
+      context: .
+      dockerfile: ./src/Shopify.InventoryService/Dockerfile
+      target: dev
     volumes:
       - ./src:/src
     working_dir: /src
-    entrypoint: [ "dotnet", "watch", "--project", "src/Shopify.InventoryService/Shopify.InventoryService.API/Shopify.InventoryService.API.csproj", "run", "--urls", "http://0.0.0.0:8080" ]
+    entrypoint: [ "dotnet", "watch", "--project", "Shopify.InventoryService/Shopify.InventoryService.API/Shopify.InventoryService.API.csproj", "run", "--urls", "http://0.0.0.0:8080" ]
 
   notification-service:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      DOTNET_USE_POLLING_FILE_WATCHER: "1"
+    build:
+      context: .
+      dockerfile: ./src/Shopify.NotificationService/Dockerfile
+      target: dev
     volumes:
       - ./src:/src
     working_dir: /src
-    entrypoint: [ "dotnet", "watch", "--project", "src/Shopify.NotificationService/Shopify.NotificationService.API/Shopify.NotificationService.API.csproj", "run", "--urls", "http://0.0.0.0:8080" ]
+    entrypoint: [ "dotnet", "watch", "--project", "Shopify.NotificationService/Shopify.NotificationService.API/Shopify.NotificationService.API.csproj", "run", "--urls", "http://0.0.0.0:8080" ]

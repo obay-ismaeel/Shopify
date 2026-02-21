@@ -12,6 +12,13 @@ COPY ["src/Shopify.NotificationService/Shopify.NotificationService.Infrastructur
 
 RUN dotnet restore "src/Shopify.NotificationService/Shopify.NotificationService.API/Shopify.NotificationService.API.csproj"
 
+FROM restore AS dev
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /src
+
 FROM restore AS publish
 COPY . .
 RUN dotnet publish "src/Shopify.NotificationService/Shopify.NotificationService.API/Shopify.NotificationService.API.csproj" -c Release -o /app/publish /p:UseAppHost=false

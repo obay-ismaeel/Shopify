@@ -12,8 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddHealthChecks()
-    .AddNpgSql(builder.Configuration.GetConnectionString("Default")!, name: "postgres")
-    .AddRabbitMQ(rabbitConnectionString: $"amqp://{builder.Configuration["RabbitMq:Host"]}", name: "rabbitmq");
+    .AddNpgSql(builder.Configuration.GetConnectionString("Default")!, name: "postgres");
+    //.AddRabbitMQ(rabbitConnectionString: $"amqp://{builder.Configuration["RabbitMq:Host"]}", name: "rabbitmq");
 
 var app = builder.Build();
 
